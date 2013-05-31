@@ -16,11 +16,8 @@ Use in the following manner:
 		
 		var root = new Component(diagram,200,50,"root caption",{x: 100, y: 100}).makeDraggable();
 		
-		var childA = new Component(diagram,200,50,"child A").makeDraggable();
-		var childB = new Component(diagram,200,50,"child B").makeDraggable()
-		root.addToList(childA).addToList(childB);
-		
-		var childC = new Component(diagram,200,50,"child C").makeDraggable()
-		childB.addToList(childC);
+		var childA = new Component(diagram,200,50,"child A").makeDraggable().connectTo(root);
+		var childB = new Component(diagram,200,50,"child B").makeDraggable().connectTo(root)
+		var childC = new Component(diagram,200,50,"child C").makeDraggable().connectTo(childB);
 		
 	}); 

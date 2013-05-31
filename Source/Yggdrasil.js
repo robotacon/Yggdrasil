@@ -244,9 +244,11 @@ var Component = new Class({
 	},
 	
     initialize: function(diagram, width, height, text, options){
-		this.diagram = diagram;
         this.x = 0;
         this.y = 0;
+		this.stack = true;
+		
+		this.diagram = diagram;
         this.width = width;
         this.height = height;
 		this.setOptions(options);
@@ -256,17 +258,16 @@ var Component = new Class({
 		this.listners = [];
 		this.children = [];
 		
+		if(options) {
+			if(options.x) this.x = options.x;			
+			if(options.y) this.y = options.y;			
+		}
+		
 		this.element = new SvgElement("rect",Object.append({x:this.x,y:this.y,width:this.width,height:this.height},this.options));		
 		this.element.inject(this.diagram.element);
 		this.text = new ComponentText(this,text,{fill: this.options.stroke});
 		
 		this.updateConnections();
-		
-		if(options) {
-			if(options.x && options.y) {
-				this.moveTo(options);
-			}
-		}
     },
 	
 	makeDraggable: function() {
@@ -304,13 +305,13 @@ var Component = new Class({
 		this.entry = [];
 		this.entry[0] = {x: this.centerX(), y: this.topY()};
 		this.entry[1] = {x: this.rightX(), y: this.centerY()};
-		this.entry[2] = false; //{x: this.centerX(), y: this.bottomY()};
+		this.entry[2] = !this.stack ? {x: this.centerX(), y: this.bottomY()} : false;
 		this.entry[3] = {x: this.leftX(), y: this.centerY()};
 				
 		this.exit = [];
-		this.exit[0] = false; // {x: this.centerX(), y: this.topY()} : false;
+		this.exit[0] = !this.stack ? {x: this.centerX(), y: this.topY()} : false;
 		this.exit[1] = {x: this.rightX(), y: this.centerY()};
-		this.exit[2] = this.isLastChild ? {x: this.centerX(), y: this.bottomY()} : false;
+		this.exit[2] = !this.stack || this.isLastChild ? {x: this.centerX(), y: this.bottomY()} : false;
 		this.exit[3] = {x: this.leftX(), y: this.centerY()};
 		
 		this.updateListners();
@@ -331,27 +332,7 @@ var Component = new Class({
 	centerY: function(){return this.y+this.height/2;},
 	bottomY: function(){return this.y + this.height;},
 	
-	add: function(child) {	
-	
-		child.parent = this;
-		if(child.x == 0 && child.y == 0) {
-			child.align();
-		}		
-		
-		new PathConnector(this,child);
-		var lastChild = this.children.getLast();		
-		if(lastChild) {
-			lastChild.isLastChild = false;
-			lastChild.updateConnections();
-		} 
-		this.children.push(child);
-		child.isLastChild = true;
-		child.updateConnections();
-		this.updateConnections();
-		return this;
-	},
-	
-	addToList: function(child) {	
+	connect: function(child) {	
 		
 		child.parent = this;
 		if(child.x == 0 && child.y == 0) {
@@ -360,16 +341,26 @@ var Component = new Class({
 		
 		var lastChild = this.children.getLast();
 		if(lastChild) {
-			new SnapConnector(lastChild,child);
+			if(this.stack) {
+				new SnapConnector(lastChild,child);
+			} else {
+				new PathConnector(this,child);
+			}
 			lastChild.isLastChild = false;
 			lastChild.updateConnections();
 		} else {
 			new PathConnector(this,child);
 		}
+		
 		this.children.push(child);
 		child.isLastChild = true;
 		child.updateConnections();
 		this.updateConnections();
+		return this;
+	},
+	
+	connectTo: function(parent) {	
+		parent.connect(this);
 		return this;
 	},
 	
