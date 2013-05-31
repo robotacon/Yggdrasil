@@ -1,13 +1,13 @@
 /*
 ---
 
+script: Yggdrasil.js
+
 name: Yggdrasil
 
 description: SVG tree list graph visualization originally create to draw behavior trees.
 
 license: MIT-style license.
-
-copyright: Copyright (c) 2013 Tor Viktorsson http://www.åskvigg.se/.
 
 authors: Tor Viktorsson
 
