@@ -1,6 +1,8 @@
 Yggdrasil
 ==========
 
+![Screenshot](https://raw.github.com/robotacon/Yggdrasil/master/logo.png)
+
 SVG tree list graph visualization.
 
 How to use
