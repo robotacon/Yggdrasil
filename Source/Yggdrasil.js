@@ -9,7 +9,7 @@ license: MIT-style license.
 
 copyright: Copyright (c) 2013 Tor Viktorsson http://www.åskvigg.se/.
 
-author: Tor Viktorsson
+authors: Tor Viktorsson
 
 requires: Core
 
