@@ -1,6 +1,5 @@
 /*
 ---
-
 script: Yggdrasil.js
 
 name: Yggdrasil
@@ -11,15 +10,15 @@ license: MIT-style license.
 
 authors: Tor Viktorsson
 
-requires: Core
+requires: core/1.2.5: '*'
 
 provides: [ TreeDiagram, Component, ComponentText, SnapConnector, PathConnector, SvgElement, SvgDrag ]
 
 disclaimer: >
-	SvgElement implementation is a butchered version of Element 
-	and SvgDrag is the corresponding cut up version of Drag. 
+ SvgElement implementation is a butchered version of Element 
+ and SvgDrag is the corresponding cut up version of Drag. 
 
----
+...
 */
 
 Document.implement({
