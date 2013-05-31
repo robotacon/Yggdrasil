@@ -1,5 +1,4 @@
 Yggdrasil
-<<<<<<< HEAD
 ==========
 
 SVG tree list graph visualization.
@@ -23,4 +22,3 @@ Use in the following manner:
 		childB.addToList(childC);
 		
 	}); 
->>>>>>> Yggdrasil/master
