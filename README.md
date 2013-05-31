@@ -3,7 +3,7 @@ Yggdrasil
 
 ![Screenshot](https://raw.github.com/robotacon/Yggdrasil/master/logo.png)
 
-SVG tree list graph visualization.
+SVG tree list graph visualization using MooTools.
 
 How to use
 ----------
