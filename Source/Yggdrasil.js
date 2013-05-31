@@ -9,8 +9,13 @@ copyright: Copyright (c) 2013 Tor Viktorsson http://www.åskvigg.se/.
 
 author: Tor Viktorsson
 
-SvgElement implementation is a butchered version of Element 
-and SvgDrag is the corresponding cut up version of Drag. 
+disclaimer: >
+	SvgElement implementation is a butchered version of Element 
+	and SvgDrag is the corresponding cut up version of Drag. 
+
+requires: Core
+
+provides: [ TreeDiagram, Component, ComponentText, SnapConnector, PathConnector, SvgElement, SvgDrag ]
 
 */
 
