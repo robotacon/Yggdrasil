@@ -1,4 +1,6 @@
 /*
+---
+
 name: Yggdrasil
 
 description: SVG tree list graph visualization originally create to draw behavior trees.
@@ -9,14 +11,15 @@ copyright: Copyright (c) 2013 Tor Viktorsson http://www.åskvigg.se/.
 
 author: Tor Viktorsson
 
-disclaimer: >
-	SvgElement implementation is a butchered version of Element 
-	and SvgDrag is the corresponding cut up version of Drag. 
-
 requires: Core
 
 provides: [ TreeDiagram, Component, ComponentText, SnapConnector, PathConnector, SvgElement, SvgDrag ]
 
+disclaimer: >
+	SvgElement implementation is a butchered version of Element 
+	and SvgDrag is the corresponding cut up version of Drag. 
+
+---
 */
 
 Document.implement({
